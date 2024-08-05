@@ -13,5 +13,4 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     Asynchronous coroutine that spawns task_wait_random n times with a set delay.
     """
     current_tasks = [task_wait_random(max_delay) for _ in range(n)]
-    random_delays = await asyncio.gather(*current_tasks)
-    return sorted(random_delays)
+    return [await task for task in asyncio.as_completed(current_tasks)]
