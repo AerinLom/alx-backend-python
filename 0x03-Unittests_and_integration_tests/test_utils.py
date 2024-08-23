@@ -75,8 +75,11 @@ class TestMemoize(unittest.TestCase):
         when accessing a_property multiple times
         """
         test_obj = self.TestClass()
-
-        with patch.object(test_obj, 'a_method', return_value=42) as mock_method:
+        with patch.object(
+            test_obj,
+            'a_method',
+            return_value=42
+        ) as mock_method:
             first_call = test_obj.a_property
             second_call = test_obj.a_property
             self.assertEqual(first_call, 42)
